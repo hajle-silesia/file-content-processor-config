@@ -45,12 +45,12 @@ spec:
             httpGet:
               path: /healthz
               port: http
-            initialDelaySeconds: 60
+            initialDelaySeconds: 10
           readinessProbe:
             httpGet:
               path: /healthz
               port: http
-            initialDelaySeconds: 60
+            initialDelaySeconds: 10
           volumeMounts:
             - mountPath: "project/file_content_processor"
               name: file-content-processor-storage
