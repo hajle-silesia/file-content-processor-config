@@ -27,10 +27,6 @@ spec:
       serviceAccountName: {{ include "helm.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      volumes:
-        - name: file-content-processor-storage
-          persistentVolumeClaim:
-            claimName: file-content-processor-pvc
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -51,9 +47,6 @@ spec:
               path: /healthz
               port: http
             initialDelaySeconds: 10
-          volumeMounts:
-            - mountPath: "project/file_content_processor"
-              name: file-content-processor-storage
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
